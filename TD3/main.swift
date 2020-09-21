@@ -10,6 +10,12 @@ import Foundation
 
 print("Hello, World!")
 
-var q = Fraction(numérateur: 1, dénominateur: 3)
-print(q)
+let a : Fraction = Fraction(3, 4)
+print(a)
+let b = Fraction(7)
+print(b)
+var c = Fraction()
+print(c)
+var d = Fraction(2, -4)
+print(d)
 
