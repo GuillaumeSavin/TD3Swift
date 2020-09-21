@@ -1,5 +1,5 @@
 //
-//  main.swift
+//  Fraction.swift
 //  TD3
 //
 //  Created by Guillaume Savin on 21/09/2020.
@@ -8,8 +8,7 @@
 
 import Foundation
 
-print("Hello, World!")
-
-var q = Fraction(numérateur: 1, dénominateur: 3)
-print(q)
-
+struct Fraction {
+    let numérateur : Int
+    let dénominateur : Int
+}
