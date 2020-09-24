@@ -23,9 +23,9 @@ print(c)
 let d = -a
 print(d)
 c += b
-print(c)
+print("+= \(c)")
 c *= a
-print(c)
+print("c = \(c)")
 var tmp = a^(5)
 print(tmp)
 tmp = a^(-5)
@@ -36,6 +36,11 @@ test = a < b
 print(test)
 var test2 = min(a, b)
 print(test2)
+var test3 = Double(c)
+print(test3)
+c = Fraction(-3.25)
+print(c)
+
 
 
 

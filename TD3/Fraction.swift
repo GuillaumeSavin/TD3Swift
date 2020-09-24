@@ -42,6 +42,29 @@ struct Fraction {
         self.numérateur = num
         self.dénominateur = 1
     }
+    init(_ flo : Float) {
+        var temp = String(flo)
+        
+        if flo < 0 {
+            var number = temp.count - 2
+            print(number)
+            temp = temp.replacingOccurrences(of: ".", with: "")
+            var num = Int(temp)
+            print(num)
+            var dén = NSDecimalNumber(decimal: pow(10,number)).intValue
+            self.numérateur = num!
+            self.dénominateur = dén
+        }
+        else {
+            var number = temp.count - 1
+            temp = temp.replacingOccurrences(of: ".", with: "")
+            var num = Int(temp)
+            print(num)
+            var dén = NSDecimalNumber(decimal: pow(10,number)).intValue
+            self.numérateur = num!
+            self.dénominateur = dén
+        }
+    }
 }
 
 extension Fraction : Comparable {
@@ -105,6 +128,12 @@ extension Fraction : Comparable {
         else {
             return false
         }
+    }
+}
+
+extension Double {
+    init(_ x: Fraction) {
+        self = Double(x.numérateur) / Double(x.dénominateur)
     }
 }
 
