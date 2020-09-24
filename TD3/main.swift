@@ -16,6 +16,26 @@ let b = Fraction(7)
 print(b)
 var c = Fraction()
 print(c)
-var d = Fraction(2, -4)
+c = a + b
+print(c)
+c = a / b
+print(c)
+let d = -a
 print(d)
+c += b
+print(c)
+c *= a
+print(c)
+var tmp = a^(5)
+print(tmp)
+tmp = a^(-5)
+print(tmp)
+var test = a > b
+print(test)
+test = a < b
+print(test)
+var test2 = min(a, b)
+print(test2)
+
+
 

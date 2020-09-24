@@ -16,9 +16,15 @@ struct Fraction {
     
     init(_ num: Int, _ dén: Int)
     {
-        var temp = fra(num, dén)
+        var den = dén
         
-        temp = reduit(num, dén)
+        if(dén == 0) {
+            den = 1
+        }
+        
+        var temp = fra(num, den)
+        
+        temp = reduit(num, den)
         if temp.1 < 0 {
             self.numérateur = -temp.0
             self.dénominateur = -temp.1
@@ -38,7 +44,7 @@ struct Fraction {
     }
 }
 
-extension Fraction : Equatable {
+extension Fraction : Comparable {
     static func == (left: Fraction, right: Fraction) -> Bool {
         return left.dénominateur == right.dénominateur && left.numérateur == right.dénominateur
     }
@@ -48,13 +54,58 @@ extension Fraction : Equatable {
     static func - (left: Fraction, right: Fraction) -> Fraction {
         return sub(fraction: left, fraction2: right)
     }
+    static prefix func - (right: Fraction) -> Fraction {
+        let left = Fraction(0, 1)
+        return sub(fraction: left, fraction2: right)
+    }
     static func / (left: Fraction, right: Fraction) -> Fraction {
         return div(fraction: left, fraction2: right)
     }
     static func * (left: Fraction, right: Fraction) -> Fraction {
         return prod(fraction: fra(left.numérateur, left.dénominateur), fraction2: fra(right.numérateur, right.dénominateur))
     }
-    
+    static func += (left: inout Fraction, right: Fraction) {
+        left = left + right
+    }
+    static func -= (left: inout Fraction, right: Fraction) {
+        left = left - right
+    }
+    static func *= (left: inout Fraction, right: Fraction) {
+        left = left * right
+    }
+    static func /= (left: inout Fraction, right: Fraction) {
+        left = left / right
+    }
+    static func ^ (left: Fraction, right: Int) -> Fraction {
+        var temp = left
+
+        if right == 0 {
+            return Fraction(1,1)
+        }
+        else {
+            
+            for _ in 1...(abs(right)-1) {
+                temp *= left
+            }
+            if(right < 0)
+            {
+                
+                return Fraction(1,1) / temp
+            }
+            return temp
+        }
+        
+    }
+    static func < (left: Fraction, right: Fraction) -> Bool {
+        let temp = left - right
+        
+        if(temp.numérateur < 0) {
+            return true
+        }
+        else {
+            return false
+        }
+    }
 }
 
 func neg(fraction: fra) -> fra {
@@ -118,7 +169,7 @@ func sub(fraction: Fraction, fraction2: Fraction) -> Fraction {
     return som(fraction: fraction, fraction2: Fraction(temp.0, temp.1))
 }
 func prod(fraction: fra, fraction2: fra) -> Fraction {
-    var fraProd = Fraction(0,0)
+    var fraProd = Fraction()
     var numerator = fraction.0 * fraction2.0
     var denominator = fraction.1 * fraction2.1
     
