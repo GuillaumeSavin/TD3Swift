@@ -38,7 +38,7 @@ var test2 = min(a, b)
 print(test2)
 var test3 = Double(c)
 print(test3)
-c = Fraction(-3.25)
+c = Fraction(3.25)
 print(c)
 
 

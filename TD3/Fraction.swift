@@ -44,26 +44,29 @@ struct Fraction {
     }
     init(_ flo : Float) {
         var temp = String(flo)
+        print(temp)
+        var i = 0
+        var num = ""
+        var den = ""
+        var before = true
+        for i in temp {
+            if(before && i != ".") {
+                num.append(i)
+            }
+            else if(!before) {
+                den.append(i)
+            }
+            else if(i == ".") {
+                before = false
+            }
+        }
         
-        if flo < 0 {
-            var number = temp.count - 2
-            print(number)
-            temp = temp.replacingOccurrences(of: ".", with: "")
-            var num = Int(temp)
-            print(num)
-            var dén = NSDecimalNumber(decimal: pow(10,number)).intValue
-            self.numérateur = num!
-            self.dénominateur = dén
-        }
-        else {
-            var number = temp.count - 1
-            temp = temp.replacingOccurrences(of: ".", with: "")
-            var num = Int(temp)
-            print(num)
-            var dén = NSDecimalNumber(decimal: pow(10,number)).intValue
-            self.numérateur = num!
-            self.dénominateur = dén
-        }
+        let newNum = Int(String(num + den))!
+        let newDén = NSDecimalNumber(decimal: pow(10, den.count)).intValue
+        print("newNum = \(newNum) newDén = \(newDén)")
+        let frac = Fraction(newNum, newDén)
+        self.numérateur = frac.numérateur
+        self.dénominateur = frac.dénominateur
     }
 }
 
